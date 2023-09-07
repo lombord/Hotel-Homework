@@ -1,0 +1,47 @@
+{% extends 'client/UI/card.html' %}
+{% load client_tags %}
+{% block card_body %}
+  <div>
+    <h1 class="card-title h4 text-center mb-3">
+      {{ book.room }}
+      {% with book=book %}
+        {% include 'client/UI/book-stats.html' %}
+      {% endwith %}
+    </h1>
+    <div class="card-text mb-2">
+      <div class="mb-1 d-flex flex-wrap gap-2 justify-content-between">
+        <div>
+          {% with badges=book.services.all %}
+            {% include 'client/UI/badges.html' %}
+          {% endwith %}
+        </div>
+        <h5 class="mb-0">
+          <span class="badge bg-success">
+            {{ book.total_price }}$
+          </span>
+        </h5>
+      </div>
+      <div class="mb-2 d-flex flex-wrap gap-2 justify-content-between">
+        <div>
+          {% with start=book.start_book end=book.end_book %}
+            {% include 'client/UI/book-date.html' %}
+          {% endwith %}
+        </div>
+        <h6 class="fs-5">
+          <span class="badge bg-primary">@{{ book.client }}</span>
+        </h6>
+      </div>
+      <p>
+        {{ book.room.description }}
+      </p>
+      <div class="d-flex justify-content-end gap-2 flex-wrap">
+        {% with url=book|obj_url:'hotel_admin:accept_request' btn_title='accept' classes='btn-success' %}
+          {% include 'client/forms/btn_form.html' %}
+        {% endwith %}
+        {% with url=book|obj_url:'hotel_admin:reject_request' btn_title='reject' classes='btn-danger' %}
+          {% include 'client/forms/btn_form.html' %}
+        {% endwith %}
+      </div>
+    </div>
+  </div>
+{% endblock card_body %}

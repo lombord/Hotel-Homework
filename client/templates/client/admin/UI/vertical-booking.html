@@ -1,0 +1,5 @@
+{% extends 'client/UI/vertical-booking.html' %}
+{% load client_tags %}
+{% block actions %}
+  <a class="btn btn-primary" href="{{ book|obj_url:'hotel_admin:request' }}">Check</a>
+{% endblock actions %}

@@ -1,0 +1,7 @@
+{% extends 'client/base/list.html' %}
+{% block item %}
+  {% with book=item image=item.room.image %}
+    {% block booking %}
+    {% endblock booking %}
+  {% endwith %}
+{% endblock item %}

@@ -1,0 +1,7 @@
+<div class="d-flex gap-2 flex-wrap">
+  {% for badge in badges %}
+    <span class="badge {{ class|default:'bg-primary' }}">
+      {{ badge.title }}
+    </span>
+  {% endfor %}
+</div>

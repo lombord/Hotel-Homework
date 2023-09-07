@@ -1,0 +1,17 @@
+{% extends 'client/UI/vertical-room.html' %}
+{% load client_tags %}
+{% block actions %}
+  {% if room.is_hidden %}
+    {% with url=room|obj_url:'hotel_admin:unhide_room' btn_title='unhide' classes='btn-warning' %}
+      {% include 'client/forms/btn_form.html' %}
+    {% endwith %}
+  {% else %}
+    {% with url=room|obj_url:'hotel_admin:hide_room' btn_title='hide' classes='btn-success' %}
+      {% include 'client/forms/btn_form.html' %}
+    {% endwith %}
+  {% endif %}
+  {% with url=room|obj_url:'hotel_admin:delete_room' btn_title='delete' classes='btn-danger' %}
+    {% include 'client/forms/btn_form.html' %}
+  {% endwith %}
+  <a class="btn btn-primary" href="{{ room|obj_url }}">Check</a>
+{% endblock actions %}

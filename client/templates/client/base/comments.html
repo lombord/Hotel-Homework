@@ -1,0 +1,7 @@
+<div class="d-flex flex-column gap-3">
+  {% for comment in comments %}
+    {% with comment=comment %}
+      {% include 'client/base/comment.html' %}
+    {% endwith %}
+  {% endfor %}
+</div>

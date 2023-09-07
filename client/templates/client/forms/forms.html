@@ -1,0 +1,20 @@
+{% extends 'client/base/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+  <div>
+    <form action="" method="post">
+      {% csrf_token %}
+      {% for form in forms.values %}
+        <div>
+          {% bootstrap_form form %}
+        </div>
+        <hr />
+      {% endfor %}
+      <div class="text-end">
+        <button type="submit" class="btn btn-primary text-capitalize">
+          {{ submit|default:'submit' }}
+        </button>
+      </div>
+    </form>
+  </div>
+{% endblock content %}

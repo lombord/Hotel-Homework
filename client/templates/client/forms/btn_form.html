@@ -1,0 +1,14 @@
+<form {% if url_name %}
+        action="{% url url_name %}"
+      {% else %}
+        action="{{ url }}"
+      {% endif %}
+      method="post">
+  {% csrf_token %}
+  {% block btn %}
+    <button type="submit"
+            class="btn text-capitalize {{ classes|default:'btn-primary' }}">
+      {{ btn_title|default:'submit' }}
+    {% endblock btn %}
+  </button>
+</form>

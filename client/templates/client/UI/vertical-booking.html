@@ -1,0 +1,41 @@
+{% extends 'client/UI/vertical-card.html' %}
+{% load client_tags %}
+{% block card_body %}
+  <div>
+    <h5 class="card-title">
+      {{ book.room }}
+      {% with book=book %}
+        {% include 'client/UI/book-stats.html' %}
+      {% endwith %}
+    </h5>
+    <div class="card-text mb-2">
+      <div class="mb-2">
+        {% with badges=book.services.all %}
+          {% include 'client/UI/badges.html' %}
+        {% endwith %}
+      </div>
+      <div class="mb-2">
+        {% with start=book.start_book end=book.end_book %}
+          {% include 'client/UI/book-date.html' %}
+        {% endwith %}
+      </div>
+      <p>
+        {{ book.room.description|truncatechars:150 }}
+      </p>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+      <h5>
+        <span class="badge bg-success">
+          {{ book.total_price }}$
+        </span>
+      </h5>
+      <div class="d-flex gap-2 flex-wrap">
+        {% block actions %}
+          {% with url=book|obj_url:'delete_booking' btn_title='Delete' classes='btn-danger' %}
+            {% include 'client/forms/btn_form.html' %}
+          {% endwith %}
+        {% endblock actions %}
+      </div>
+    </div>
+  </div>
+{% endblock card_body %}

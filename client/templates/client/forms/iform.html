@@ -1,0 +1,14 @@
+{% load bootstrap5 %}
+<form action="{{ url }}"
+      method="post"
+      {% if send_file %}
+        enctype="multipart/form-data"
+      {% endif %}>
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <div class="text-end">
+    <button type="submit" class="btn btn-primary text-capitalize">
+      {{ submit|default:'submit' }}
+    </button>
+  </div>
+</form>

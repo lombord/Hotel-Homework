@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}">Hotel</a>
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        {% for url in menu %}
+          <a class="nav-link active" aria-current="page" href="{% url url.name %}">
+            {{ url.label }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</nav>

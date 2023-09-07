@@ -1,0 +1,14 @@
+{% extends 'client/base/base.html' %}
+{% block content %}
+  {% if list %}
+    <div class="d-flex flex-column gap-3">
+      {% for item in list %}
+        {% block item %}
+          
+        {% endblock item %}
+      {% endfor %}
+    </div>
+    {% else %}
+    <h1 class="text-center">Empty</h1>
+  {% endif %}
+{% endblock content %}

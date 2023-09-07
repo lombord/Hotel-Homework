@@ -1,0 +1,10 @@
+<span class="badge
+             {% if book.approve_status == 1 %}
+               bg-success
+             {% elif book.approve_status == 2 %}
+               bg-danger
+             {% else %}
+               bg-warning
+             {% endif %}">
+  {{ book.get_approve_status_display }}
+</span>

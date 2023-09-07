@@ -1,0 +1,10 @@
+{% extends 'client/forms/btn_form.html' %}
+{% block btn %}
+  <button type="submit" class="btn btn-danger">
+    {% if room.is_liked %}
+      <i class="fa-solid fa-heart"></i>
+    {% else %}
+      <i class="fa-regular fa-heart"></i>
+    {% endif %}
+  </button>
+{% endblock btn %}

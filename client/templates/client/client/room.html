@@ -1,0 +1,52 @@
+{% extends 'client/base/base.html' %}
+{% load client_tags %}
+{% block title %}
+  {{ room }}
+{% endblock title %}
+{% block content %}
+  <div>
+    <div class="card">
+      <img src="{{ room.image.url }}"
+           class="card-img-top w-100 object-fit-cover"
+           style="max-height: 500px"
+           alt="..." />
+      <div class="p-4">
+        <h1 class="card-title text-center h2 mb-3">
+          {{ room }}
+          <span class="badge bg-danger fs-5">{{ room.price }}$</span>
+        </h1>
+        <p class="card-text h5">
+          {% if room.reserved %}
+            <span class="badge bg-warning">
+              Booked
+            </span>
+          {% else %}
+            <span class="badge bg-success">
+              Not Booked
+            </span>
+          {% endif %}
+        </p>
+        <p class="card-text">
+          {{ room.description }}
+        </p>
+        {% if not room.reserved %}
+          <div class="text-end">
+            <a href="{% url 'booking_room' %}?room={{ room.pk }}"
+               class="btn btn-primary px-4 fs-5">Book</a>
+          </div>
+        {% endif %}
+        <div class="mb-3">
+          {% with form=form url=room|obj_url:'post_comment' submit='post' %}
+            {% include 'client/forms/iform.html' %}
+          {% endwith %}
+        </div>
+        <div>
+          <h2>Comments</h2>
+          {% with comments=comments %}
+            {% include 'client/base/comments.html' %}
+          {% endwith %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

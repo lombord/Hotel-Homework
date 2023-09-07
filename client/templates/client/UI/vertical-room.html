@@ -1,0 +1,35 @@
+{% extends 'client/UI/vertical-card.html' %}
+{% load client_tags %}
+{% block card_body %}
+  <div>
+    <h5 class="card-title">
+      {{ room }}
+      <span class="badge bg-danger">
+        {{ room.price }}$
+      </span>
+    </h5>
+    <div class="card-text">
+      <p>
+        {{ room.description|truncatechars:200 }}
+      </p>
+    </div>
+    <div class="d-flex gap-2 justify-content-end flex-wrap">
+      {% block actions %}
+        <a href="{{ room.get_absolute_url }}" class="btn btn-primary px-4">
+          Check
+        </a>
+        <div>
+          {% if room.is_liked %}
+          {% with room=room url=room|obj_url:'unlike_room' %}
+            {% include 'client/UI/like-btn.html' %}
+          {% endwith %}
+        {% else %}
+          {% with room=room url=room|obj_url:'like_room' %}
+            {% include 'client/UI/like-btn.html' %}
+          {% endwith %}
+        {% endif %}
+        </div>
+      {% endblock actions %}
+    </div>
+  </div>
+{% endblock card_body %}

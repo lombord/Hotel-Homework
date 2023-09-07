@@ -1,0 +1,7 @@
+{% extends 'client/base/base.html' %}
+
+{% block content %}
+  {% with image=book.room.image book=book %}
+    {% include 'client/admin/UI/book-card.html' %}
+  {% endwith %}
+{% endblock content %}
